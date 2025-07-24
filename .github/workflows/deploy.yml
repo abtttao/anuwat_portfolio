@@ -2,25 +2,21 @@ name: Build & Deploy to Pages Repo
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main  # หรือ branch ที่คุณใช้งานจริง
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
+      - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Install dependencies & build
-        run: |
-          npm install
-          npm run build
-
-      - name: Deploy to GitHub Pages repo
+      - name: Deploy to external GitHub Pages repo
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
           external_repository: your-username/project-pages
-          publish_branch: main
-          publish_dir: ./dist  # เปลี่ยนเป็น ./build ถ้าใช้ React
+          publish_branch: main  # หรือ gh-pages ถ้าใช้สาขานั้น
+          publish_dir: ./       # root directory ที่มี index.html
