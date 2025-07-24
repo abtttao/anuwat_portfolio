@@ -17,6 +17,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.DEPLOY_KEY }}
-          external_repository: your-username/project-pages
+          external_repository: abtttao/portfolio
           publish_branch: main  # หรือ gh-pages ถ้าใช้สาขานั้น
           publish_dir: ./       # root directory ที่มี index.html
