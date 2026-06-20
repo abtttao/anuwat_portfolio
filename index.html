@@ -5,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Anuwat Bunrueang — QA Engineer</title>
   <!-- SEO & Open Graph -->
-  <meta name="description" content="Anuwat Bunrueang — QA Engineer with 3+ years of experience in manual and automation testing. Skilled in Cypress, Selenium, API testing, and CI/CD."/>
-  <meta name="keywords" content="QA Engineer, Software Tester, Automation Testing, Cypress, Selenium, Portfolio, Anuwat Bunrueang"/>
+  <meta name="description" content="Anuwat Bunrueang — QA Engineer with 4+ years of experience in manual and automation testing. Skilled in Cypress, Selenium, Playwright, API testing, and CI/CD."/>
+  <meta name="keywords" content="QA Engineer, Software Tester, Automation Testing, Cypress, Selenium, Playwright, Portfolio, Anuwat Bunrueang"/>
   <meta name="author" content="Anuwat Bunrueang"/>
   <meta property="og:title" content="Anuwat Bunrueang — QA Engineer"/>
-  <meta property="og:description" content="QA Engineer with 3+ years of experience in manual and automation testing. Skilled in Cypress, Selenium, API testing, and CI/CD."/>
+  <meta property="og:description" content="QA Engineer with 4+ years of experience in manual and automation testing. Skilled in Cypress, Selenium, Playwright, API testing, and CI/CD."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="./assets/image/profile.jpg"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Anuwat Bunrueang — QA Engineer"/>
-  <meta name="twitter:description" content="QA Engineer portfolio — Cypress, Selenium, API Testing, CI/CD."/>
+  <meta name="twitter:description" content="QA Engineer portfolio — Cypress, Selenium, Playwright, API Testing, CI/CD."/>
   <meta name="twitter:image" content="./assets/image/profile.jpg"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧪</text></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet"/>
@@ -294,7 +295,6 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
   font-size:1.3rem;font-weight:700;padding:.65rem 1.4rem;
   background:var(--p50);border:1.5px solid var(--border);border-radius:10rem;transition:all var(--tr);
 }
-.tool-pill img{width:2rem;height:2rem;object-fit:contain}
 .tool-pill:hover{background:var(--p100);border-color:var(--p300);color:var(--p600)}
 
 /* ══ EDUCATION ══ */
@@ -323,7 +323,51 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
   box-shadow:0 2px 8px hsla(var(--h),60%,45%,.3);
 }
 
-/* ══ CERTS — auto-slide ══ */
+/* ── ACCORDION ── */
+.exp-toggle{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:1.25rem;font-weight:700;color:var(--p500);
+  background:none;border:none;cursor:pointer;padding:0;
+  margin-top:1.6rem;transition:color var(--tr);
+}
+.exp-toggle:hover{color:var(--p700)}
+.exp-toggle i{font-size:1.1rem;transition:transform var(--tr)}
+.exp-toggle.open i{transform:rotate(180deg)}
+.exp-list-wrap{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .28s ease;
+}
+.exp-list-wrap.show{grid-template-rows:1fr}
+.exp-list{
+  display:flex;flex-direction:column;gap:.8rem;
+  overflow:hidden;
+  margin-top:0;
+  transition:margin-top .28s ease;
+}
+.exp-list-wrap.show .exp-list{margin-top:1.2rem}
+
+/* ── CONTACT SECTION ── */
+.contact-section{background:var(--white);padding:9rem 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-item{
+  display:flex;align-items:center;gap:1.6rem;
+  padding:2rem 2.4rem;
+  background:var(--grad-soft);border:1.5px solid var(--border);
+  border-radius:var(--r-xl);transition:all var(--tr);
+}
+.contact-item:hover{border-color:var(--p300);transform:translateX(4px);box-shadow:var(--shadow)}
+.contact-ic{
+  width:4.8rem;height:4.8rem;border-radius:14px;flex-shrink:0;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  font-size:1.9rem;color:var(--white);
+  box-shadow:0 4px 12px hsla(var(--h),60%,45%,.3);
+}
+.contact-label{font-size:1.2rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem}
+.contact-val{font-size:1.5rem;font-weight:700;color:var(--text)}
+.contact-val a{color:var(--p500);transition:color var(--tr)}
+.contact-val a:hover{color:var(--p700)}
 .certs-outer{overflow:hidden;position:relative;margin:0 -4rem}
 .certs-outer::before,.certs-outer::after{
   content:'';position:absolute;top:0;bottom:0;width:10rem;z-index:2;pointer-events:none;
@@ -462,6 +506,7 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
   .hero-inner{grid-template-columns:1fr;gap:4rem}
   .hero-photo{order:-1;display:flex;justify-content:center}
   .hero-frame{width:260px;height:300px}
+  .contact-grid{grid-template-columns:1fr}
   .skills-cats{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
 
@@ -477,7 +522,7 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
   .skills-cats{grid-template-columns:1fr}
   .edu-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
-  .certs-outer{margin:0 -2.4rem}
+  .mobile-menu{top:68px}
   .exp-timeline{padding-left:2.6rem}
 }
 @media(max-width:480px){
@@ -521,7 +566,7 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
              target="_blank" class="btn-white">
             <i class="fa-solid fa-file-arrow-down"></i> Download CV
           </a>
-          <button class="btn-outline-white" @click="go('footer')">Get in Touch</button>
+          <button class="btn-outline-white" @click="go('contact')">Get in Touch</button>
         </div>
         <div class="hero-socials">
           <a href="https://www.linkedin.com/in/anuwat-bunrueang-6aa35b24a/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -567,7 +612,15 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
           </div>
           <div class="exp-role">{{j.role}}</div>
           <div class="exp-co"><i class="fa-regular fa-building"></i> {{j.company}}</div>
-          <ul class="exp-list"><li v-for="it in j.items" :key="it">{{it}}</li></ul>
+          <button :class="['exp-toggle', {open: j.open}]" @click="j.open=!j.open">
+            <span>{{j.open ? 'Hide details' : 'Show details'}}</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div :class="['exp-list-wrap', {show: j.open}]">
+            <ul class="exp-list">
+              <li v-for="it in j.items" :key="it">{{it}}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -583,7 +636,15 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
           </div>
           <div class="exp-role">{{j.role}}</div>
           <div class="exp-co"><i class="fa-solid fa-graduation-cap"></i> {{j.company}}</div>
-          <ul class="exp-list"><li v-for="it in j.items" :key="it">{{it}}</li></ul>
+          <button :class="['exp-toggle', {open: j.open}]" @click="j.open=!j.open">
+            <span>{{j.open ? 'Hide details' : 'Show details'}}</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div :class="['exp-list-wrap', {show: j.open}]">
+            <ul class="exp-list">
+              <li v-for="it in j.items" :key="it">{{it}}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -613,9 +674,8 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
       <div class="bar-title">Tools I Use Daily</div>
       <div class="tools-row">
         <div v-for="t in tools" :key="t.name" class="tool-pill">
-          <img :src="'./assets/image/'+t.img" :alt="t.name" onerror="this.style.display='none'"/>
-          <span>{{t.name}}</span>
-        </div>
+            <span>{{t.name}}</span>
+          </div>
       </div>
     </div>
   </div>
@@ -688,6 +748,59 @@ section.tinted{background:var(--grad-soft);padding:9rem 0}
   </div>
 </teleport>
 
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <p class="s-label">Get in Touch</p>
+    <h2 class="s-title">Contact <span>Me</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-ic"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email</div>
+            <div class="contact-val"><a href="mailto:bunrueang.tao42@gmail.com">bunrueang.tao42@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div>
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-val"><a href="https://www.linkedin.com/in/anuwat-bunrueang-6aa35b24a/" target="_blank">anuwat-bunrueang</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic"><i class="fa-brands fa-github"></i></div>
+          <div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-val"><a href="https://github.com/abtttao" target="_blank">github.com/abtttao</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-ic"><i class="fa-solid fa-map-pin"></i></div>
+          <div>
+            <div class="contact-label">Location</div>
+            <div class="contact-val">Bangkok, Thailand</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;gap:2rem;">
+        <div style="background:var(--grad);border-radius:var(--r-xl);padding:3.6rem;color:white;box-shadow:var(--shadow-lg)">
+          <div style="font-size:3.2rem;margin-bottom:1.6rem">👋</div>
+          <div style="font-size:2.2rem;font-weight:800;margin-bottom:1rem;line-height:1.2">Let's work together</div>
+          <div style="font-size:1.5rem;opacity:.8;line-height:1.8;margin-bottom:2.8rem">Open to new opportunities in QA Engineering and Automation Testing. Feel free to reach out!</div>
+          <a href="mailto:bunrueang.tao42@gmail.com"
+             style="display:inline-flex;align-items:center;gap:.8rem;font-size:1.4rem;font-weight:800;padding:1.2rem 2.8rem;background:white;color:var(--p600);border-radius:10rem;box-shadow:0 4px 16px rgba(0,0,0,.15);transition:all .22s ease"
+             onmouseover="this.style.transform='translateY(-2px)'"
+             onmouseout="this.style.transform='translateY(0)'">
+            <i class="fa-solid fa-paper-plane"></i> Send Email
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="footer" id="footer">
   <div class="container">
@@ -733,7 +846,7 @@ createApp({
     const nav=[
       {id:'home',label:'Home'},{id:'experience',label:'Experience'},
       {id:'skills',label:'Skills'},{id:'education',label:'Education'},
-      {id:'certificates',label:'Certificates'},{id:'footer',label:'Contact'},
+      {id:'certificates',label:'Certificates'},{id:'contact',label:'Contact'},
     ];
     const active=ref('home'),mob=ref(false);
     function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'})}
@@ -749,7 +862,7 @@ createApp({
     }
 
     const mainJobs=[
-      {period:'Sep 2024 — Present',role:'QA Engineer',company:"CP-Axtra Co., Ltd (Lotus's)",tag:'Manual 80% · Automation 20%',
+      {open:true,period:'Sep 2024 — Present',role:'QA Engineer',company:"CP-Axtra Co., Ltd (Lotus's)",tag:'Manual 80% · Automation 20%',
        items:[
         'Design and maintain comprehensive test plans, test cases, and test data for the Invoice & Receipt system integrated with ERP.',
         'Execute System Integration Testing (SIT) and User Acceptance Testing (UAT) alongside business users.',
@@ -757,38 +870,38 @@ createApp({
         'Develop and maintain automated regression scripts using Selenium to reduce manual testing effort.',
         'Prepare test summary reports and communicate testing progress, risks, and defect status to stakeholders.',
        ]},
-      {period:'Jul 2023 — Aug 2024',role:'QA Automation Engineer',company:'Gamify Thailand Co., Ltd',tag:'Manual 70% · Automation 30%',
+      {open:true,period:'Jul 2023 — Aug 2024',role:'QA Automation Engineer',company:'Gamify Thailand Co., Ltd',tag:'Manual 70% · Automation 30%',
        items:[
         'Developed test plans and test cases; executed end-to-end, UI, API, and performance tests.',
-        'Built and maintained automated test suites using Cypress, improving coverage and release confidence.',
+        'Built and maintained automated test suites using Cypress, improving test coverage and release confidence.',
         'Prepared test data, mocks, and stubs for isolated and reliable test environments.',
         'Analyzed test results and provided clear, actionable defect reports to the engineering team.',
         'Tracked and managed bugs through their full lifecycle using Jira.',
        ]},
-      {period:'Jul 2022 — Jun 2023',role:'Software Tester',company:'EdVISORY Co., Ltd',tag:'Manual Testing',
+      {open:true,period:'Jul 2022 — Jun 2023',role:'Software Tester',company:'EdVISORY Co., Ltd',tag:'Manual Testing',
        items:[
         'Reviewed software requirements and defined test scenarios aligned with business goals.',
         'Performed UI and API testing across multiple devices, browsers, and environments.',
-        'Analyzed outcomes for database impact, functional errors, and usability issues.',
+        'Analyzed test outcomes for database impact, functional errors, and usability issues.',
         'Produced structured defect reports for design and development teams.',
-        'Facilitated UAT sessions and presented test results directly to clients.',
+        'Facilitated User Acceptance Testing (UAT) sessions and presented results directly to clients.',
        ]},
-      {period:'Jan — May 2022',role:'Front-End Developer',company:'Summit Computer Co., Ltd (Internship)',tag:'Internship',
+      {open:true,period:'Jan — May 2022',role:'Front-End Developer',company:'Summit Computer Co., Ltd (Internship)',tag:'Internship',
        items:[
-        'Developed front-end features using XHTML, JSF PrimeFaces on Eclipse IDE with Apache Tomcat.',
+        'Developed front-end features using XHTML and JSF PrimeFaces on Eclipse IDE with Apache Tomcat.',
         'Conducted preliminary testing before handover to the system testing team.',
-        'Contributed to a UX/UI redesign initiative to improve system usability.',
+        'Contributed to a UX/UI redesign initiative to improve overall system usability.',
         'Prepared and maintained technical documentation to support the project team.',
        ]},
     ];
     const partJobs=[
-      {period:'2021 — 2022',role:'Front-End Developer',company:'Senior Project — Mae Fah Luang University',
+      {open:true,period:'2021 — 2022',role:'Front-End Developer',company:'Senior Project — Mae Fah Luang University',
        items:[
-        'Led development of "Elder Eat" — a Flutter/Dart mobile app helping elderly users manage diet and receive healthy food recommendations.',
-        'Conducted user research, gathered requirements, and designed end-to-end UX/UI.',
+        'Led development of "Elder Eat" — a Flutter/Dart mobile application helping elderly users manage their diet and receive healthy food recommendations.',
+        'Conducted user research, gathered requirements, and designed end-to-end UX/UI flows.',
         'Performed manual testing and authored user manual and project documentation.',
        ]},
-      {period:'2020 — 2021',role:'Front-End Developer',company:'School of Information Technology, MFU (Part-time)',
+      {open:true,period:'2020 — 2021',role:'Front-End Developer',company:'School of Information Technology, MFU (Part-time)',
        items:[
         'Gathered requirements from stakeholders and designed website UX/UI concepts.',
         'Built front-end interfaces using JavaScript and Bootstrap.',
@@ -800,7 +913,7 @@ createApp({
       {name:'Testing & QA',icon:'fa-solid fa-flask-vial',
        tags:['Manual Testing','Automation Testing','API Testing','Performance Testing','UAT','SIT','Regression Testing','Test Planning','Test Case Design']},
       {name:'Automation Frameworks',icon:'fa-solid fa-robot',
-       tags:['Cypress.io','Selenium','Robot Framework','K6','JMeter','Jenkins','CI/CD Pipeline']},
+       tags:['Cypress.io','Selenium','Playwright','Robot Framework','K6','JMeter','Jenkins','CI/CD Pipeline']},
       {name:'Programming Languages',icon:'fa-solid fa-code',
        tags:['JavaScript','TypeScript','Python','Java','Dart']},
       {name:'Frontend & Design',icon:'fa-solid fa-palette',
@@ -809,11 +922,9 @@ createApp({
        tags:['PostgreSQL','Swagger','GitLab','Jira','Confluence','Postman','Agile / Scrum','ERP Systems']},
     ];
     const tools=[
-      {name:'Cypress',img:'cypress.png'},{name:'Selenium',img:'Selenium.png'},
-      {name:'Postman',img:'Postman.png'},{name:'Jira',img:'Jira.png'},
-      {name:'Figma',img:'Figma.png'},{name:'SQL',img:'SQL.png'},
-      {name:'GitLab',img:'Git.png'},{name:'Python',img:'Python.png'},
-      {name:'TypeScript',img:'Ts.png'},{name:'VSCode',img:'VS.png'},
+      {name:'Cypress'},{name:'Selenium'},{name:'Postman'},{name:'Jira'},
+      {name:'Figma'},{name:'SQL'},{name:'GitLab'},{name:'Python'},
+      {name:'TypeScript'},{name:'VSCode'},{name:'ChatGPT'},{name:'Claude'},
     ];
     const langs=[{name:'Thai',level:'Native'},{name:'English',level:'Intermediate'}];
     const certs=['Cer1.png','Cer2.jpg','Cer3.png','Cer4.png','Cer5.png','Cer6.png'];
