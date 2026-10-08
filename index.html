@@ -1929,6 +1929,104 @@
       backdrop-filter: blur(12px);
     }
 
+    /* Experience timeline: scroll-lit glass rail and pointer-reactive cards */
+    .exp-timeline {
+      --timeline-progress: 0;
+      --timeline-glow: hsla(var(--h), 82%, 66%, .52);
+      padding-left: 4.4rem;
+    }
+    .exp-timeline::before {
+      left: 1.05rem;
+      top: 1.1rem;
+      bottom: 1rem;
+      width: 3px;
+      background: linear-gradient(180deg, rgba(154,126,226,.12), rgba(154,126,226,.28));
+      box-shadow: 0 0 0 1px rgba(255,255,255,.52), inset 0 0 6px rgba(255,255,255,.7);
+      overflow: hidden;
+    }
+    .exp-timeline::after {
+      content: '';
+      position: absolute;
+      z-index: 0;
+      top: 1.1rem;
+      left: 1.05rem;
+      width: 3px;
+      height: calc(100% - 2.1rem);
+      border-radius: 3px;
+      background: linear-gradient(180deg, #c6b2ff, #8863e9 70%, #69d9ed);
+      box-shadow: 0 0 12px rgba(157,123,245,.65), 0 0 27px rgba(157,123,245,.3);
+      pointer-events: none;
+      transform: scaleY(var(--timeline-progress));
+      transform-origin: top;
+      transition: transform .18s linear;
+    }
+    .exp-item { z-index: 1; }
+    .exp-dot {
+      left: -4.4rem;
+      top: 1.25rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      border: 1px solid rgba(255,255,255,.95);
+      background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(209,194,255,.84));
+      box-shadow: 0 0 0 4px rgba(150,119,231,.15), 0 4px 16px rgba(92,66,161,.18), inset 0 1px 3px white;
+      transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, background .45s ease;
+    }
+    .exp-dot::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: inherit;
+      background: linear-gradient(145deg, #bba4ff, #8060dd);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,.8);
+      transition: inset .35s ease, background .35s ease;
+    }
+    .exp-dot::after {
+      content: '';
+      position: absolute;
+      inset: -7px;
+      border: 1px solid rgba(153,124,224,.32);
+      border-radius: inherit;
+      opacity: 0;
+      transform: scale(.72);
+      transition: transform .45s ease, opacity .45s ease;
+    }
+    .exp-item.is-current .exp-dot {
+      transform: scale(1.12);
+      background: linear-gradient(145deg, #fff, #c5f5fa);
+      box-shadow: 0 0 0 5px rgba(138,107,222,.19), 0 0 24px rgba(142,111,231,.4), inset 0 1px 3px white;
+    }
+    .exp-item.is-current .exp-dot::before {
+      inset: 4px;
+      background: linear-gradient(145deg, #8c70e5, #56c8db);
+    }
+    .exp-item.is-current .exp-dot::after { opacity: 1; transform: scale(1); }
+    .exp-card {
+      --pointer-x: 50%;
+      --pointer-y: 0%;
+      border-radius: 2.8rem;
+      background:
+        radial-gradient(360px circle at var(--pointer-x) var(--pointer-y), rgba(255,255,255,.72), transparent 68%),
+        linear-gradient(145deg, rgba(255,255,255,.74), rgba(247,244,255,.56));
+      box-shadow: 0 16px 42px rgba(67,48,119,.09), inset 0 1px 0 rgba(255,255,255,.95);
+      transition: transform .5s cubic-bezier(.2,.75,.25,1), box-shadow .5s ease, border-color .4s ease;
+      will-change: transform;
+    }
+    .exp-card:hover {
+      transform: translate3d(6px, -3px, 0);
+      box-shadow: 0 25px 60px rgba(67,48,119,.16), inset 0 1px 0 rgba(255,255,255,.98);
+    }
+    @media (max-width: 768px) {
+      .exp-timeline { padding-left: 3.5rem; }
+      .exp-timeline::before, .exp-timeline::after { left: 1.05rem; }
+      .exp-dot { left: -3.5rem; }
+      .exp-card { border-radius: 2.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .exp-timeline::after { transition: none; }
+      .exp-dot, .exp-dot::before, .exp-dot::after, .exp-card { transition: none !important; }
+      .exp-card:hover { transform: none; }
+    }
+
     :where(a, button):focus-visible {
       outline: 3px solid hsl(var(--h),80%,68%);
       outline-offset: 3px;
@@ -1940,6 +2038,18 @@
       .header-actions > .language-toggle { display: none; }
       .mobile-menu { top: 6.8rem; right: .8rem; }
       .hero-inner > div:first-child { padding: 2.4rem; border-radius: 2.4rem; }
+    }
+    /* Keep the scroll cue in the document flow on stacked tablet/mobile heroes. */
+    @media (max-width: 1024px) {
+      .scroll-hint {
+        position: relative;
+        inset: auto;
+        transform: none;
+        margin: 2.4rem auto 0;
+        animation: none;
+        opacity: .78;
+      }
+      .hero { padding-bottom: 2.4rem; }
     }
     @media (prefers-reduced-transparency: reduce) {
       .header, .mobile-menu, .hero-inner > div:first-child,
@@ -2546,10 +2656,37 @@
           document.querySelectorAll('.fi:not(.on)').forEach(el => {
             if (el.getBoundingClientRect().top < window.innerHeight * .9) el.classList.add('on');
           });
+          updateExperienceTimeline();
+        }
+        function updateExperienceTimeline() {
+          const timelines = document.querySelectorAll('.exp-timeline');
+          const markerY = window.innerHeight * .48;
+          timelines.forEach(timeline => {
+            const bounds = timeline.getBoundingClientRect();
+            const progress = Math.max(0, Math.min(1, (markerY - bounds.top) / Math.max(bounds.height, 1)));
+            timeline.style.setProperty('--timeline-progress', progress.toFixed(4));
+            let nearest = null;
+            let nearestDistance = Infinity;
+            timeline.querySelectorAll('.exp-item').forEach(item => {
+              const dot = item.querySelector('.exp-dot');
+              const rect = dot ? dot.getBoundingClientRect() : item.getBoundingClientRect();
+              const distance = Math.abs(rect.top + rect.height / 2 - markerY);
+              if (distance < nearestDistance) { nearest = item; nearestDistance = distance; }
+            });
+            timeline.querySelectorAll('.exp-item').forEach(item => item.classList.toggle('is-current', item === nearest && nearestDistance < window.innerHeight * .42));
+          });
+        }
+        function onExperiencePointerMove(event) {
+          const card = event.target.closest('.exp-card');
+          if (!card) return;
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
+          card.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
         }
         onMounted(() => {
           tick();
           window.addEventListener('scroll', onScroll, { passive: true });
+          document.addEventListener('pointermove', onExperiencePointerMove, { passive: true });
           window.addEventListener('keydown', onKey);
           setTimeout(onScroll, 120);
           // init slider position (no animation)
@@ -2558,6 +2695,7 @@
         });
         onUnmounted(() => {
           window.removeEventListener('scroll', onScroll);
+          document.removeEventListener('pointermove', onExperiencePointerMove);
           window.removeEventListener('keydown', onKey);
           clearInterval(autoTimer);
         });
